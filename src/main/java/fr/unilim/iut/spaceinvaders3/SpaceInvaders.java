@@ -1,9 +1,11 @@
 package fr.unilim.iut.spaceinvaders3;
 
+import fr.unilim.iut.spaceinvaders3.moteurJeu.Commande;
+import fr.unilim.iut.spaceinvaders3.moteurJeu.Jeu;
 import fr.unilim.iut.spaceinvaders3.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders3.utils.HorsEspaceJeuException;
 
-public class SpaceInvaders {
+public class SpaceInvaders implements Jeu {
 
     private static final char MARQUE_FIN_LIGNE = '\n';
 	private static final char MARQUE_VIDE = '.';
@@ -50,10 +52,13 @@ public class SpaceInvaders {
 		return this.aUnVaisseau() && vaisseau.occupeLaPosition(x, y);
 	}
 
-	private boolean aUnVaisseau() {
+	public boolean aUnVaisseau() {
 		return vaisseau!=null;
 	}
 	
+	public Vaisseau recupererVaisseau() {
+		return this.vaisseau;
+	}
 
 	 public void positionnerUnNouveauVaisseau(Dimension dimension, Position position, int vitesse) {
 			
@@ -95,5 +100,26 @@ public class SpaceInvaders {
 			vaisseau.positionner(0, vaisseau.ordonneeLaPlusHaute());
 		}
 	}
+	 @Override
+     public void evoluer(Commande commandeUser) {
+		
+        if (commandeUser.gauche) {
+            deplacerVaisseauVersLaGauche();
+        }
+		
+       if (commandeUser.droite) {
+	        deplacerVaisseauVersLaDroite();
+       }
 
-}
+     }
+
+
+	@Override
+	public boolean etreFini() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+ 
+
+  }
