@@ -4,6 +4,7 @@ import fr.unilim.iut.spaceinvaders3.moteurJeu.Commande;
 import fr.unilim.iut.spaceinvaders3.moteurJeu.Jeu;
 import fr.unilim.iut.spaceinvaders3.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders3.utils.HorsEspaceJeuException;
+import fr.unilim.iut.spaceinvaders3.utils.MissileException;
 
 public class SpaceInvaders implements Jeu {
 
@@ -13,6 +14,7 @@ public class SpaceInvaders implements Jeu {
 	int longueur;
     int hauteur;
 	Vaisseau vaisseau;
+	Missile missile;
 	
 	
 
@@ -41,10 +43,11 @@ public class SpaceInvaders implements Jeu {
 
 	private char recupererMarqueDeLaPosition(int x, int y) {
 		char marque;
-		    if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
-			      marque=MARQUE_VAISSEAU;
-		    else
-			      marque=MARQUE_VIDE;
+		if (this.aUnVaisseauQuiOccupeLaPosition(x, y))
+			marque = Constante.MARQUE_VAISSEAU;
+		else if (this.aUnMissileQuiOccupeLaPosition(x, y))
+				marque = Constante.MARQUE_MISSILE;
+		else marque = Constante.MARQUE_VIDE;
 		return marque;
 	}
 
@@ -54,10 +57,22 @@ public class SpaceInvaders implements Jeu {
 
 	public boolean aUnVaisseau() {
 		return vaisseau!=null;
+	}	
+	
+	private boolean aUnMissileQuiOccupeLaPosition(int x, int y) {
+		return this.aUnMissile() && missile.occupeLaPosition(x, y);
+	}
+
+	public boolean aUnMissile() {
+		return missile!=null;
 	}
 	
 	public Vaisseau recupererVaisseau() {
 		return this.vaisseau;
+	}
+	
+	public Missile recupererUnMissile() {
+		return this.missile;
 	}
 
 	 public void positionnerUnNouveauVaisseau(Dimension dimension, Position position, int vitesse) {
@@ -108,8 +123,14 @@ public class SpaceInvaders implements Jeu {
         }
 		
        if (commandeUser.droite) {
-	        deplacerVaisseauVersLaDroite(); 
+	        deplacerVaisseauVersLaDroite();  
        }
+       
+       if (commandeUser.tir) {
+    	   if (commandeUser.tir && !this.aUnMissile())
+               tirerUnMissile(new Dimension(Constante.MISSILE_LONGUEUR, Constante.MISSILE_HAUTEUR),
+    					Constante.MISSILE_VITESSE);
+	}
 
      }
 
@@ -119,6 +140,15 @@ public class SpaceInvaders implements Jeu {
 		// TODO Auto-generated method stub
 		return false;
 	}
+
+	
+	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
+		
+		   if ((vaisseau.hauteur()+ dimensionMissile.hauteur()) > this.hauteur )
+			   throw new MissileException("Pas assez de hauteur libre entre le vaisseau et le haut de l'espace jeu pour tirer le missile");
+							
+		   this.missile = this.vaisseau.tirerUnMissile(dimensionMissile,vitesseMissile);
+    }
 
  
 

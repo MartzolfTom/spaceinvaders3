@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 /**
- * classe qui represente un controleur en lien avec un KeyListener
+ * classe qui represente un controleur en lien avec un KeyListener² 
  * 
  * @author vthomas
  * 
@@ -21,7 +21,7 @@ public class Controleur implements KeyListener {
 	 */
 	private  Commande commandeARetourner;
 
-	/**
+	/** 
 	 * construction du controleur par defaut le controleur n'a pas de commande
 	 */
 	public Controleur() {
@@ -47,26 +47,29 @@ public class Controleur implements KeyListener {
 	 */
 	public void keyPressed(KeyEvent e) {
 
-		switch (e.getKeyChar()) {
+		switch (e.getKeyCode()) {
 		// si on appuie sur 'q',commande joueur est gauche
-		case 'q':
+		case KeyEvent.VK_LEFT:
 			this.commandeEnCours.gauche = true;
 			this.commandeARetourner.gauche = true;
 			break;
 		// si on appuie sur 'd',commande joueur est droite
-		case 'd':
-			this.commandeEnCours.droite = true;
+		case KeyEvent.VK_RIGHT:			this.commandeEnCours.droite = true;
 			this.commandeARetourner.droite = true;
 			break;
 		// si on appuie sur 'z',commande joueur est haut
-		case 'z':
+		case KeyEvent.VK_UP:
 			this.commandeEnCours.haut = true;
 			this.commandeARetourner.haut = true;
 			break;
 		// si on appuie sur 's',commande joueur est bas
-		case 's':
+		case KeyEvent.VK_DOWN:
 			this.commandeEnCours.bas = true;
 			this.commandeARetourner.bas = true;
+			break;
+		case KeyEvent.VK_SPACE:
+			this.commandeEnCours.tir = true;
+			this.commandeARetourner.tir = true;
 			break;
 		}
 
@@ -77,18 +80,21 @@ public class Controleur implements KeyListener {
 	 * met a jour les commandes quand le joueur relache une touche
 	 */
 	public void keyReleased(KeyEvent e) {
-		switch (e.getKeyChar()) {
-		case 'q':
+		switch (e.getKeyCode()) {
+		case KeyEvent.VK_LEFT:
 			this.commandeEnCours.gauche = false;
 			break;
-		case 'd':
+		case KeyEvent.VK_RIGHT:
 			this.commandeEnCours.droite = false;
 			break;
-		case 'z':
+		case KeyEvent.VK_UP:
 			this.commandeEnCours.haut = false;
 			break;
-		case 's':
+		case KeyEvent.VK_DOWN:
 			this.commandeEnCours.bas = false;
+			break;
+		case KeyEvent.VK_SPACE:
+			this.commandeEnCours.tir = false;
 			break;
 		}
 
