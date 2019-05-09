@@ -5,11 +5,15 @@ import static org.junit.Assert.fail;
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 
+import fr.unilim.iut.spaceinvaders3.model.Dimension;
+import fr.unilim.iut.spaceinvaders3.model.Position;
+import fr.unilim.iut.spaceinvaders3.model.SpaceInvaders;
 import fr.unilim.iut.spaceinvaders3.utils.DebordementEspaceJeuException;
 import fr.unilim.iut.spaceinvaders3.utils.HorsEspaceJeuException;
 import fr.unilim.iut.spaceinvaders3.utils.MissileException;
 
 import org.junit.Before;
+
 
 
 public class SpaceInvadersTest {

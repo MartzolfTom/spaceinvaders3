@@ -1,4 +1,4 @@
-package fr.unilim.iut.spaceinvaders3;
+package fr.unilim.iut.spaceinvaders3.model;
 
 import fr.unilim.iut.spaceinvaders3.utils.MissileException;
 
