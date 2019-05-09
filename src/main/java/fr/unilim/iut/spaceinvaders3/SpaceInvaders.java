@@ -108,14 +108,14 @@ public class SpaceInvaders implements Jeu {
         }
 		
        if (commandeUser.droite) {
-	        deplacerVaisseauVersLaDroite();
+	        deplacerVaisseauVersLaDroite(); 
        }
 
      }
 
 
 	@Override
-	public boolean etreFini() {
+	public boolean etreFini() { 
 		// TODO Auto-generated method stub
 		return false;
 	}
