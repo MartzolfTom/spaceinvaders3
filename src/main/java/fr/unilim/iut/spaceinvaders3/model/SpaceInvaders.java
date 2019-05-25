@@ -180,13 +180,25 @@ public class SpaceInvaders implements Jeu {
 		if (this.aUnEnvahisseur()) {
 			this.deplacerEnvahisseur();
 		}
-
+		
+		if(this.aUnEnvahisseur() && this.aUnMissile()) {
+			creerUneNouvelleCollision(this.missile,this.envahisseur);
+		}
+		
+		if(this.vaisseau ==null && this.envahisseur ==null ) {
+			this.missile=null;
+		}
+	
+		
 	}
-
+	
 	@Override
 	public boolean etreFini() {
-		// TODO Auto-generated method stub
+		if(this.vaisseau ==null && this.envahisseur ==null ) {
+			return true;
+		}
 		return false;
+
 	}
 
 	public void tirerUnMissile(Dimension dimensionMissile, int vitesseMissile) {
@@ -242,4 +254,13 @@ public class SpaceInvaders implements Jeu {
 		}
 	}
 
+	public void creerUneNouvelleCollision(Missile missile, Envahisseur envahisseur) {
+		Collision collision = new Collision(missile, envahisseur);	
+		if(collision.detecterCollision()) {
+			vaisseau=null;
+			this.envahisseur=null;
+		}
+		
+	}
 }
+

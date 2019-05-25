@@ -3,6 +3,8 @@ package fr.unilim.iut.spaceinvaders3;
 import static org.junit.Assert.fail;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import fr.unilim.iut.spaceinvaders3.model.Dimension;
@@ -495,23 +497,19 @@ public class SpaceInvadersTest {
 	    }
 	    
 	    
-	   /* @Test
-	    public void test_collisionSpritesHautDroite() {
-	    	   spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(3,2),new Position(4,9), 3);
-		       spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(7,7), 3);
-		       spaceinvaders.deplacerEnvahisseurVersLaGauche();
-		       
-		       assertEquals("" + 
-		       "...............\n" + 
-		       "...............\n" +
-		       "...............\n" + 
-		       "...............\n" + 
-		       "...............\n" + 
-		       "...............\n" + 
-		       "...............\n" + 
-		       ".......EEE.....\n" + 
-		       "....VVVEEE.....\n" + 
-		       "....VVV........\n" , spaceinvaders.recupererEspaceJeuDansChaineASCII());
-	    }*/
-	    
+	    @Test
+	    public void test_JeuFiniCollisionMissileEnvahisseur() {
+	        spaceinvaders.positionnerUnNouveauEnvahisseur(new Dimension(3,2), new Position(6, 2), 1);
+	        spaceinvaders.positionnerUnNouveauVaisseau(new Dimension(7,2), new Position(5, 9), 1);
+	        
+	        spaceinvaders.tirerUnMissile(new Dimension(1, 2), 4);
+	        spaceinvaders.deplacerMissile();
+
+	        spaceinvaders.creerUneNouvelleCollision(spaceinvaders.recupererUnMissile(), spaceinvaders.recupererUnEnvahisseur());
+	        
+	        System.out.println(spaceinvaders.recupererUnMissile().ordonneeLaPlusBasse());
+	        
+	        assertTrue(spaceinvaders.etreFini());
+	    }
+
 }
