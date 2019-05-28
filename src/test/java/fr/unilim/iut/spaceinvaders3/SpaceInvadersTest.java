@@ -507,8 +507,6 @@ public class SpaceInvadersTest {
 
 	        spaceinvaders.creerUneNouvelleCollision(spaceinvaders.recupererUnMissile(), spaceinvaders.recupererUnEnvahisseur());
 	        
-	        System.out.println(spaceinvaders.recupererUnMissile().ordonneeLaPlusBasse());
-	        
 	        assertTrue(spaceinvaders.etreFini());
 	    }
 

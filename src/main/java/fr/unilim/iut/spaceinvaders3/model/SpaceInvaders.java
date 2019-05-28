@@ -185,7 +185,7 @@ public class SpaceInvaders implements Jeu {
 			creerUneNouvelleCollision(this.missile,this.envahisseur);
 		}
 		
-		if(this.vaisseau ==null && this.envahisseur ==null ) {
+		if(null == this.vaisseau  && null == this.envahisseur  ) {
 			this.missile=null;
 		}
 	
@@ -194,7 +194,7 @@ public class SpaceInvaders implements Jeu {
 	
 	@Override
 	public boolean etreFini() {
-		if(this.vaisseau ==null && this.envahisseur ==null ) {
+		if(null == this.vaisseau  && null == this.envahisseur  ) {
 			return true;
 		}
 		return false;
@@ -257,7 +257,7 @@ public class SpaceInvaders implements Jeu {
 	public void creerUneNouvelleCollision(Missile missile, Envahisseur envahisseur) {
 		Collision collision = new Collision(missile, envahisseur);	
 		if(collision.detecterCollision()) {
-			vaisseau=null;
+			this.vaisseau=null;
 			this.envahisseur=null;
 		}
 		

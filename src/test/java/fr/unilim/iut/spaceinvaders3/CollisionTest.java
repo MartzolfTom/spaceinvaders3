@@ -3,8 +3,8 @@ package fr.unilim.iut.spaceinvaders3;
 
 import static org.junit.Assert.assertTrue;
 
+
 import org.junit.Test;
-import org.junit.experimental.theories.suppliers.TestedOn;
 
 import fr.unilim.iut.spaceinvaders3.model.Collision;
 import fr.unilim.iut.spaceinvaders3.model.Dimension;
@@ -54,7 +54,7 @@ public class CollisionTest {
 		for (int i = 0; i < 8; i++) {
 			collision.sprite.deplacerVerticalementVers(Direction.HAUT_ECRAN);
 		}
-		collision.cible.deplacerVerticalementVers(Direction.DROITE);
+		collision.cible.deplacerHorizontalementVers(Direction.DROITE);
 		
 		assertTrue(collision.detecterCollision());
 	}
@@ -69,7 +69,7 @@ public class CollisionTest {
 		for (int i = 0; i < 6; i++) {
 			collision.sprite.deplacerVerticalementVers(Direction.HAUT_ECRAN);
 		}
-		collision.cible.deplacerVerticalementVers(Direction.DROITE);
+		collision.cible.deplacerHorizontalementVers(Direction.DROITE);
 		
 		assertTrue(collision.detecterCollision());
 	}
@@ -84,7 +84,7 @@ public class CollisionTest {
 		for (int i = 0; i < 9; i++) {
 			collision.sprite.deplacerVerticalementVers(Direction.HAUT_ECRAN);
 		}
-		collision.cible.deplacerVerticalementVers(Direction.DROITE);
+		collision.cible.deplacerHorizontalementVers(Direction.DROITE);
 		
 		assertTrue(collision.detecterCollision());
 	}

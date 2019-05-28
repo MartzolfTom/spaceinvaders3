@@ -30,7 +30,7 @@ public class DessinSpaceInvaders implements DessinJeu {
 			   this.dessinerUnEnvahisseur(envahisseur, im);
 		   }
 		   if(!this.jeu.aUnVaisseau()) {
-			   this.dessinerMessageFin(im," Partie fini", Color.black);
+			   this.dessinerMessageFin(im," Partie finie", Color.black);
 		   }
 	   }
 
